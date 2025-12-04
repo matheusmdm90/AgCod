@@ -1,40 +1,44 @@
-import { Link } from "@react-navigation/native";
-import {
-  Image,
-  Pressable,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
+
+import { router } from "expo-router";
+
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import Botao from "../componetents/Botao";
+import Input from "../componetents/Input";
+import Vinculo from "../componetents/Link";
+import ModalCadastroUsuario from "../componetents/Modal";
 
 export default function Index() {
   return (
-    <View style={styles.container}>
+    <SafeAreaProvider style={styles.container}>
       <Image
-        style={styles.image}
-        source={require("./Logo.png")}
-        placeholder="logo"
+        style={{ width: 180, height: 180 }}
+        source={require("../assets/images/Logo.png")}
       />
+
       <Text style={styles.textoBenvindo}>
         Bem vindo ao <Text style={styles.textoLogo}>Agcod</Text>
       </Text>
       <View style={styles.login}>
         <Text style={styles.textologin}>Iniciar sessão com:</Text>
-        <TextInput placeholder="Informe E-mail" style={styles.inputLogin} />
-        <TextInput
-          placeholder="Informe sua senha"
-          secureTextEntry
-          style={styles.inputLogin}
-        />
-        <Pressable style={styles.btnEntrar}>
-          <Text style={styles.btnTextoEntrar}>Entrar</Text>
-        </Pressable>
-        <Link to="/register" style={styles.textoEqcSenha}>
-          Esqueci minha senha
-        </Link>
+        <Input placeholder="Digita seu email" />
+        <Input placeholder="Informe sua senha" secureTextEntry />
+        <Botao nome="Entrar" onPress={() => router.navigate("./Home")} />
       </View>
-    </View>
+
+      <View
+        style={{
+          width: "90%",
+          alignItems: "flex-end",
+          marginBottom: 30,
+        }}
+      >
+        <Vinculo src="/esqueciASenha" texto="Esqueci minha senha" />
+      </View>
+
+      <Text style={styles.textOU}>---OU---</Text>
+      <ModalCadastroUsuario />
+    </SafeAreaProvider>
   );
 }
 
@@ -45,19 +49,22 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#050F28",
   },
+
+  login: {
+    width: "100%",
+    alignItems: "center",
+  },
   textoLogo: {
     color: "#01B3D7",
     fontWeight: "bold",
-    fontSize: 32,
+    fontSize: 28,
   },
   textoBenvindo: {
     color: "#FFFFFF",
-    fontSize: 32,
+    fontSize: 28,
     fontWeight: "bold",
-    marginTop: 10,
+    marginTop: 15,
   },
-
-  login: {},
 
   textologin: {
     color: "#FFFFFF",
@@ -66,39 +73,11 @@ const styles = StyleSheet.create({
     marginTop: 15,
     textAlign: "center",
   },
-  inputLogin: {
-    borderWidth: 1,
-    borderColor: "#ccc",
-    padding: 8,
-    borderRadius: 4,
-    backgroundColor: "#FFFFFF",
-    width: 350,
-    height: 70,
-    marginTop: 10,
-    fontSize: 24,
-  },
 
-  btnEntrar: {
-    backgroundColor: "#01B3D7",
-    width: 350,
-    height: 70,
-    borderRadius: 4,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 20,
-  },
-  btnTextoEntrar: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#FFFFFF",
-  },
-  textoEqcSenha: {
+  textOU: {
     color: "#01B3D7",
-    fontSize: 18,
-    marginTop: 10,
-    textAlign: "right",
-    textDecorationLine: "underline",
-    textDecorationStyle: "solid",
-    textDecorationColor: "#01B3D7",
+    fontWeight: "bold",
+    opacity: 0.33,
+    fontSize: 24,
   },
 });

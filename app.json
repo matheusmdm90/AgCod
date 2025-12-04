@@ -4,19 +4,21 @@
     "slug": "AgCod",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./app/Logo.png",
+    "icon": "./assets/images/Logo.png",
     "scheme": "agcod",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "backgroundColor": "#050F28",
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./app/Logo.png",
+        "foregroundImage": "./assets/images/Logo.png",
         "backgroundColor": "#050F28"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "supportsRtl": true
     },
     "web": {
       "bundler": "metro",
